@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.Map
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         var countAswerGood: Int = 0
         var countAnswerNot: Int = 0
     }
-
 
     val countries = mutableMapOf(
         1 to "Австралия",
@@ -50,14 +49,31 @@ class MainActivity : AppCompatActivity() {
         12 to "Кабул"
     )
 
+    val countryCity = mutableMapOf(
+        "Австралия" to "Канберра",
+        "Австрия" to "Вена",
+        "Азербайджан" to "Баку",
+        "Албания" to "Тирана",
+        "Алжир" to "Алжир",
+        "Ангола" to "Луанда",
+        "Андорра" to "Андорра - ла - Велья",
+        "Антигуа и Барбуда" to "Сент - Джонс",
+        "Аргентина" to "Буэнос - Айрес",
+        "Армения" to "Ереван",
+        "Аруба" to "Ораньестад",
+        "Афганистан" to "Кабул"
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         textViewsFill()
 
         answerOne.setOnClickListener {
             buttonClick(it)
+            randomizer()
         }
 
         answerTwo.setOnClickListener {
@@ -71,34 +87,36 @@ class MainActivity : AppCompatActivity() {
         answerFour.setOnClickListener {
             buttonClick(it)
         }
-
-
     }
 
     fun textViewsFill() {
         qestionTextView.text = "${countries.get(count)} столица: "
 
-//        val cities2 = mutableMapOf<Int, String>()
-//        cities2.putAll(cities)
-//        cities2.remove(count)
-//
-//        val cities3 = mutableMapOf<Int, String>()
-//        cities3.putAll(cities2)
-
-        answerOne.text = cities.get(Random.nextInt(1, countries.size/3))
-        answerTwo.text = cities.get(Random.nextInt(countries.size/3+1, countries.size/3*2))
+        answerOne.text = cities.get(Random.nextInt(1, countries.size / 3))
+        answerTwo.text = cities.get(Random.nextInt(countries.size / 3 + 1, countries.size / 3 * 2))
         answerThree.text = cities.get(count)
-        answerFour.text = cities.get(Random.nextInt((countries.size/3*2)+1, countries.size))
+        answerFour.text = cities.get(Random.nextInt((countries.size / 3 * 2) + 1, countries.size))
 
         Log.e("AAAAAA cities", cities.toString())
-//        Log.e("AAAAAA cities2", cities2.toString())
-//        Log.e("AAAAAA citiesS  size", cities2.size.toString())
 
         if (count == 7) {
             val intent = Intent(this, SecondActivity::class.java)
             intent.putExtra("AswerGood", countAswerGood)
             startActivity(intent)
         }
+    }
+
+    fun randomizer() {
+
+        for (entry in countryCity) {
+            println("${entry.key} - ${entry.value}")
+        }
+//        for (i in countries){
+//            if ()
+//            Random.nextInt(1, countries.size)
+
+//            println(i.toString())
+//    }
     }
 
     fun buttonClick(v: View) {
@@ -108,9 +126,9 @@ class MainActivity : AppCompatActivity() {
         } else
             countAnswerNot++
 
-        Log.e("AAAAAA", count.toString())
-        Log.e("AAAAAA правильный", countAswerGood.toString())
-        Log.e("AAAAAA не правильный", countAnswerNot.toString())
+//        Log.e("AAAAAA", count.toString())
+//        Log.e("AAAAAA правильный", countAswerGood.toString())
+//        Log.e("AAAAAA не правильный", countAnswerNot.toString())
 
         count++
 
