@@ -1,8 +1,6 @@
 package com.capitals
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_second.*
 
@@ -12,9 +10,11 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
-        textViewTrue.text = MainActivity.countAswerGood.toString()
-        textViewFalse.text = MainActivity.countAnswerNot.toString()
+        textViewTrue.text = Data.countAswerGood.toString()
+        textViewFalse.text = Data.countAnswerNot.toString()
 
-
+        Data.questionCount = 1
+        Data.countAswerGood = 0
+        Data.countAnswerNot = 0
     }
 }

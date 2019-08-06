@@ -2,49 +2,50 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8392E4"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#398E9C"
+    android:padding="50dp">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_marginRight="20dp"
         android:gravity="center"
         android:text="Количество правильных ответов"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textViewTrue"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="20dp"
-        android:background="@android:color/holo_green_dark"
+        android:background="#AAB98C"
         android:gravity="center"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_marginRight="20dp"
         android:gravity="center"
         android:text="Количество не правильных ответов"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textViewFalse"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="20dp"
-        android:background="@android:color/holo_red_dark"
+        android:background="#B69693"
         android:gravity="center"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

@@ -2,137 +2,111 @@ package com.capitals
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
+import android.view.Gravity
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity;
-
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.Map
+import java.util.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
-    companion object {
-        var count: Int = 1
-        var countAswerGood: Int = 0
-        var countAnswerNot: Int = 0
+    val countryFromCountryCity = ArrayList(Data.countryCity.keys)
+    val cityFromCountryCity = ArrayList(Data.countryCity.values)
+
+    var randomCountry = countryFromCountryCity.get(Random.nextInt(countryFromCountryCity.size))
+
+    fun changeRandomCapital() {
+        randomCountry = countryFromCountryCity.get(Random.nextInt(countryFromCountryCity.size))
     }
-
-    val countries = mutableMapOf(
-        1 to "Австралия",
-        2 to "Австрия",
-        3 to "Азербайджан",
-        4 to "Албания",
-        5 to "Алжир",
-        6 to "Ангола",
-        7 to "Андорра",
-        8 to "Антигуа и Барбуда",
-        9 to "Аргентина",
-        10 to "Армения",
-        11 to "Аруба",
-        12 to "Афганистан"
-    )
-
-    val cities = mutableMapOf(
-        1 to "Канберра",
-        2 to "Вена",
-        3 to "Баку",
-        4 to "Тирана",
-        5 to "Алжир",
-        6 to "Луанда",
-        7 to "Андорра - ла - Велья",
-        8 to "Сент - Джонс",
-        9 to "Буэнос - Айрес",
-        10 to "Ереван",
-        11 to "Ораньестад",
-        12 to "Кабул"
-    )
-
-    val countryCity = mutableMapOf(
-        "Австралия" to "Канберра",
-        "Австрия" to "Вена",
-        "Азербайджан" to "Баку",
-        "Албания" to "Тирана",
-        "Алжир" to "Алжир",
-        "Ангола" to "Луанда",
-        "Андорра" to "Андорра - ла - Велья",
-        "Антигуа и Барбуда" to "Сент - Джонс",
-        "Аргентина" to "Буэнос - Айрес",
-        "Армения" to "Ереван",
-        "Аруба" to "Ораньестад",
-        "Афганистан" to "Кабул"
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
-        textViewsFill()
+        fillTextViews()
 
-        answerOne.setOnClickListener {
-            buttonClick(it)
-            randomizer()
+        val listOfButtons = arrayListOf<Button>(answerOne, answerTwo, answerThree, answerFour)
+        for (i in listOfButtons) {
+            i.setOnClickListener {
+                buttonClick(it)
+            }
         }
 
-        answerTwo.setOnClickListener {
-            buttonClick(it)
-        }
-
-        answerThree.setOnClickListener {
-            buttonClick(it)
-        }
-
-        answerFour.setOnClickListener {
-            buttonClick(it)
+        showResult.setOnClickListener {
+            goToResultActivity()
         }
     }
 
-    fun textViewsFill() {
-        qestionTextView.text = "${countries.get(count)} столица: "
+    fun fillTextViews() {
 
-        answerOne.text = cities.get(Random.nextInt(1, countries.size / 3))
-        answerTwo.text = cities.get(Random.nextInt(countries.size / 3 + 1, countries.size / 3 * 2))
-        answerThree.text = cities.get(count)
-        answerFour.text = cities.get(Random.nextInt((countries.size / 3 * 2) + 1, countries.size))
+        qestionTextView.text = "Столица страны \"${randomCountry}\": "
 
-        Log.e("AAAAAA cities", cities.toString())
+        val listOfButtons = arrayListOf<Button>(answerOne, answerTwo, answerThree, answerFour)
+        Collections.shuffle(listOfButtons)
 
-        if (count == 7) {
-            val intent = Intent(this, SecondActivity::class.java)
-            intent.putExtra("AswerGood", countAswerGood)
-            startActivity(intent)
+        val random = Random.nextInt(listOfButtons.size)
+        val randomCapital = Data.countryCity.get(randomCountry)
+
+        val tempArrList = mutableListOf<String>()
+        tempArrList.addAll(cityFromCountryCity)
+        tempArrList.remove(randomCapital)
+
+        for (i in 0..listOfButtons.size - 1) {
+            val tempTextOnButton = tempArrList.get(Random.nextInt(tempArrList.size))
+            listOfButtons.get(i).text = tempTextOnButton
+            listOfButtons.get(i).setBackgroundResource(R.color.cityColor)
+            tempArrList.remove(tempTextOnButton)
         }
-    }
 
-    fun randomizer() {
+        listOfButtons.get(random).text = randomCapital
 
-        for (entry in countryCity) {
-            println("${entry.key} - ${entry.value}")
-        }
-//        for (i in countries){
-//            if ()
-//            Random.nextInt(1, countries.size)
+        countryFromCountryCity.remove(randomCountry)
 
-//            println(i.toString())
-//    }
+
+
     }
 
     fun buttonClick(v: View) {
 
-        if ((v as TextView).text.equals(cities.get(count))) {
-            countAswerGood++
-        } else
-            countAnswerNot++
+        if ((v as TextView).text.equals(Data.countryCity.get(randomCountry))) {
+            Data.countAswerGood++
+            val toast = Toast.makeText(this, "Правильно", Toast.LENGTH_SHORT)
+            toast.setGravity(Gravity.TOP, 0,100)
+            toast.show()
 
-//        Log.e("AAAAAA", count.toString())
-//        Log.e("AAAAAA правильный", countAswerGood.toString())
-//        Log.e("AAAAAA не правильный", countAnswerNot.toString())
+        } else {
+            Data.countAnswerNot++
+            val toast = Toast.makeText(this, "Нет", Toast.LENGTH_SHORT)
+            toast.setGravity(Gravity.TOP, 0,100)
+            toast.show()
+        }
 
-        count++
+        Log.e("AAAAAA правильный", Data.countAswerGood.toString())
+        Log.e("AAAAAA не правильный", Data.countAnswerNot.toString())
+        Log.e("AAA btnClick наж столиц", v.text.toString())
+        Log.e("AAA столица этой страны", Data.countryCity.get(randomCountry))
 
-        textViewsFill()
+        Data.questionCount++
 
+        if (Data.questionCount == Data.countryCity.size - 1) {
+            goToResultActivity()
+        }
+
+        changeRandomCapital()
+
+        fillTextViews()
+    }
+
+    fun goToResultActivity() {
+        val intent = Intent(this, SecondActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
