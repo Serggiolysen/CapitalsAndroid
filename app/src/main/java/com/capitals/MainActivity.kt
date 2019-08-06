@@ -42,6 +42,10 @@ class MainActivity : AppCompatActivity() {
         showResult.setOnClickListener {
             goToResultActivity()
         }
+
+        Data.questionCount = 1
+        Data.countAswerGood = 0
+        Data.countAnswerNot = 0
     }
 
     fun fillTextViews() {
