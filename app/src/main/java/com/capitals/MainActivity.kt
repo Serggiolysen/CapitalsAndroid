@@ -2,7 +2,6 @@ package com.capitals
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.SystemClock
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -13,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import kotlin.random.Random
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,12 +27,21 @@ class MainActivity : AppCompatActivity() {
         randomCountry = countryFromCountryCity.get(Random.nextInt(countryFromCountryCity.size))
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
         fillTextViews()
+
+        MobileAds.initialize(this) {}
+
+        val adRequest = AdRequest.Builder()
+            .addTestDevice("9C648A752984D011170331E8F2794148")
+            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+            .build()
+        adView.loadAd(adRequest)
 
         val listOfButtons = arrayListOf<Button>(answerOne, answerTwo, answerThree, answerFour)
         for (i in listOfButtons) {
@@ -73,8 +84,6 @@ class MainActivity : AppCompatActivity() {
 
         countryFromCountryCity.remove(randomCountry)
 
-
-
     }
 
     fun buttonClick(v: View) {
@@ -82,13 +91,13 @@ class MainActivity : AppCompatActivity() {
         if ((v as TextView).text.equals(Data.countryCity.get(randomCountry))) {
             Data.countAswerGood++
             val toast = Toast.makeText(this, "Правильно", Toast.LENGTH_SHORT)
-            toast.setGravity(Gravity.TOP, 0,100)
+            toast.setGravity(Gravity.TOP, 0, 100)
             toast.show()
 
         } else {
             Data.countAnswerNot++
             val toast = Toast.makeText(this, "Нет", Toast.LENGTH_SHORT)
-            toast.setGravity(Gravity.TOP, 0,100)
+            toast.setGravity(Gravity.TOP, 0, 100)
             toast.show()
         }
 
