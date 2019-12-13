@@ -7,4 +7,12 @@
     <color name="green">#4BA59D</color>
     <color name="countryColor">#FFC29B60</color>
     <color name="cityColor">#C4BB7A</color>
+    <color name="questionColor">#C29B60</color>
+    <color name="buttonsColor">#C4BB7A</color>
+    <color name="mainBackgroundColor">#66A2AC</color>
+    <color name="lightGreen">#5AFF93</color>
+    <color name="lightGreenTint">#755AFF93</color>
+    <color name="ligthRed">#FA5050</color>
+    <color name="ligthRedTint">#A4FA5050</color>
+
 </resources>

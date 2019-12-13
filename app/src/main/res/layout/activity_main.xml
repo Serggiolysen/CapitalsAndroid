@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/vvvv"
+    android:id="@+id/mainBacground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#66A2AC"
+    android:background="@color/mainBackgroundColor"
     android:orientation="vertical"
     android:paddingTop="20sp"
     android:paddingLeft="40sp"
@@ -13,13 +14,13 @@
 
 
     <TextView
-        android:id="@+id/qestionTextView"
+        android:id="@+id/questionTextView"
         android:layout_width="match_parent"
         android:layout_height="85dp"
         android:layout_gravity="center|top"
-        android:background="#C29B60"
+        android:background="@drawable/selector2"
         android:gravity="center"
-        android:padding="5dp"
+        android:padding="7dp"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -38,7 +39,7 @@
                 android:id="@+id/answerOne"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="#C4BB7A" />
+                android:background="@drawable/selector"/>
 
         </LinearLayout>
 
@@ -51,7 +52,7 @@
                 android:id="@+id/answerTwo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="#C4BB7A" />
+                android:background="@drawable/selector" />
 
         </LinearLayout>
 
@@ -65,7 +66,7 @@
                 android:id="@+id/answerThree"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="#C4BB7A" />
+                android:background="@drawable/selector" />
 
         </LinearLayout>
 
@@ -78,7 +79,7 @@
                 android:id="@+id/answerFour"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="#C4BB7A" />
+                android:background="@drawable/selector" />
 
         </LinearLayout>
 
@@ -91,21 +92,14 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/showResult"
+            android:id="@+id/showResultButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="#C4BB7A"
+            android:background="@drawable/selector"
             android:layout_marginBottom="10dp"
-            android:text="результат" />
+            android:text="@string/result" />
 
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-8430715230282445/3895183293">
-        </com.google.android.gms.ads.AdView>
 
 
     </LinearLayout>

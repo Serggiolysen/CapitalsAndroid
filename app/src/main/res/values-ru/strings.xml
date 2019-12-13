@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Столицы</string>
+    <string name="no_more_countries">Закончились страны</string>
+    <string name="press_back_to_exit">Нажмите назад чтобы выйти</string>
+    <string name="question_beginning">Столица страны</string>
+    <string name="result">результат</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="Australia">Австралия</string>
+    <string name="Canberra">Канберра</string>
+    <string name="Bad_answer_count">Количество не правильных ответов</string>
+    <string name="Good_answer_count">Количество правильных ответов</string>
+
+</resources>

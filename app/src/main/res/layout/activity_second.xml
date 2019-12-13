@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackgroundColor"
     android:orientation="vertical"
-    android:background="#398E9C"
     android:padding="50dp">
 
     <TextView
@@ -11,10 +11,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="Количество правильных ответов"
-        android:textSize="20sp"
+        android:text="@string/Good_answer_count"
         android:textAlignment="center"
         android:textAllCaps="true"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="#AAB98C"
+        android:background="@color/lightGreenTint"
         android:gravity="center"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -32,10 +32,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="Количество не правильных ответов"
-        android:textSize="20sp"
+        android:text="@string/Bad_answer_count"
         android:textAlignment="center"
         android:textAllCaps="true"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -43,9 +43,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="#B69693"
+        android:background="@color/ligthRedTint"
         android:gravity="center"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.gms.ads.AdView
+
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            android:layout_gravity="bottom"
+            ads:adUnitId="ca-app-pub-8430715230282445/3895183293" />
+
+    </FrameLayout>
+
 
 </LinearLayout>

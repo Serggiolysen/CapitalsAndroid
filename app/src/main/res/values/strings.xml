@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Capitals</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="result">result</string>
+    <string name="question_beginning">"Capital of "</string>
+    <string name="press_back_to_exit">Press BACK button to exit</string>
+    <string name="no_more_countries">No more countries</string>
+    <string name="Canberra">Canberra</string>
+    <string name="Australia">Australia</string>
+    <string name="Good_answer_count">Right answers</string>
+    <string name="Bad_answer_count">Wrong answers</string>
+
+
 </resources>
